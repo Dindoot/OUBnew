@@ -248,7 +248,7 @@ with bot:
 
 # Userbot ver/tag/codename
 OUBnew_VER = "4.5"
-CODENAME = "Sicherheit"
+CODENAME = "IZ*ONE"
 
 # Global Variables
 COUNT_MSG = 0
