@@ -101,7 +101,7 @@ CONSOLE_LOGGER_VERBOSE = sb(os.environ.get("CONSOLE_LOGGER_VERBOSE", "False"))
 ALIVE_NAME = os.environ.get("ALIVE_NAME", None)
 
 # Logo
-LOGO = os.environ.get("LOGO", "https://telegra.ph/file/c417fa40d6f83139afea8.mp4")
+LOGO = os.environ.get("LOGO", None)
 
 # Google Drive Module
 G_DRIVE_CLIENT_ID = os.environ.get("G_DRIVE_CLIENT_ID", None)
