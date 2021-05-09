@@ -247,7 +247,7 @@ with bot:
         quit(1)
 
 # Userbot ver/tag/codename
-OUBnew_VER = "4.5"
+OUBnew_VER = "2.1"
 CODENAME = "IZ*ONE"
 
 # Global Variables
