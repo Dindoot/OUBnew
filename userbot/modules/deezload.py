@@ -132,7 +132,7 @@ async def _(event):
                 recursive_quality=True,
                 recursive_download=True,
                 not_interface=True,
-                zips=False,
+                zips=True,
             )
             for required_track in reqd_albums:
                 await event.edit(strings["uploading"])
