@@ -1,30 +1,8 @@
-#    UniBorg (telegram userbot)
-#    Copyright (C) 2020 The Authors
-
-#    This program is free software: you can redistribute it and/or modify
-#    it under the terms of the GNU Affero General Public License as published by
-#    the Free Software Foundation, either version 3 of the License, or
-#    (at your option) any later version.
-
-#    This program is distributed in the hope that it will be useful,
-#    but WITHOUT ANY WARRANTY; without even the implied warranty of
-#    MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-#    GNU Affero General Public License for more details.
-
-#    DeezLoader is an attempt to archive songs and
-#    to serve the poor who can't afford legal copy of the songs.
-#    If you are capable of buying and
-#    spending money on songs in legal ways, please do so.
-
-#    The Author(s) of this module are not responsible
-#    for the usage of this program by other people.
-
-#    The Author(s) of this module do not recommend
-#    doing it illegally or against Deezer's Terms of Service
-
-#    You should have received a copy of the GNU Affero General Public License
-#    along with this program.  If not, see <https://www.gnu.org/licenses/>.
-
+# Copyright (C) 2020 The Authors UniBorg (telegram userbot)
+#
+# Licensed under the Raphielscape Public License, Version 1.d (the "License");
+# you may not use this file except in compliance with the License.
+#
 # requires: deezloader hachoir Pillow
 # Ported from UniBorg by AnggaR96s
 
@@ -40,10 +18,10 @@ from hachoir.parser import createParser
 from telethon.tl.types import DocumentAttributeAudio
 
 
-@register(outgoing=True, pattern="^\.deez (.+?|) (FLAC|MP3\_320|MP3\_256|MP3\_128)")
+@register(outgoing=True,
+          pattern=r"^\.deezload (.+?|) (FLAC|MP3\_320|MP3\_256|MP3\_128)")
 async def _(event):
-    """DeezLoader by @An0nimia
-    Ported for UniBorg by @SpEcHlDe"""
+    """DeezLoader by @An0nimia ported for UniBorg by @SpEcHlDe"""
     if event.fwd_from:
         return
 
@@ -51,11 +29,10 @@ async def _(event):
         "name": "DeezLoad",
         "arl_token_cfg_doc": "ARL Token for Deezer",
         "invalid_arl_token": "please set the required variables for this module",
-        "wrong_cmd_syntax": "bruh, now i think how far should we go. please terminate my Session!",
+        "wrong_cmd_syntax": "bruh, now i think how far should we go. please terminate my Session",
         "server_error": "We're experiencing technical difficulties.",
-        "processing": "`Downloading...`",
-        "uploading": "`Uploading...`",
-    }
+        "processing": "Downloading...",
+        "uploading": "Uploading..."}
 
     ARL_TOKEN = DEEZER_ARL_TOKEN
 
@@ -86,7 +63,7 @@ async def _(event):
                 quality=required_qty,
                 recursive_quality=True,
                 recursive_download=True,
-                not_interface=True,
+                not_interface=True
             )
             await event.edit(strings["uploading"])
             await upload_track(required_track, event)
@@ -101,10 +78,10 @@ async def _(event):
                 recursive_quality=True,
                 recursive_download=True,
                 not_interface=True,
-                zips=False,
+                zips=False
             )
+            await event.edit(strings["uploading"])
             for required_track in reqd_albums:
-                await event.edit(strings["uploading"])
                 await upload_track(required_track, event)
             shutil.rmtree(temp_dl_path)
             await event.delete()
@@ -117,7 +94,7 @@ async def _(event):
                 quality=required_qty,
                 recursive_quality=True,
                 recursive_download=True,
-                not_interface=True,
+                not_interface=True
             )
             await event.edit(strings["uploading"])
             await upload_track(required_track, event)
@@ -132,15 +109,14 @@ async def _(event):
                 recursive_quality=True,
                 recursive_download=True,
                 not_interface=True,
-                zips=False,
+                zips=False
             )
+            await event.edit(strings["uploading"])
             for required_track in reqd_albums:
-                await event.edit(strings["uploading"])
                 await upload_track(required_track, event)
             shutil.rmtree(temp_dl_path)
             await event.delete()
-
-    else:
+            else:
         await event.edit(strings["wrong_cmd_syntax"])
 
 
@@ -161,7 +137,7 @@ async def upload_track(track_location, message):
             voice=False,
             title=title,
             performer=performer,
-            waveform=None,
+            waveform=None
         )
     ]
     supports_streaming = True
@@ -178,11 +154,9 @@ async def upload_track(track_location, message):
     )
     os.remove(track_location)
 
-
-CMD_HELP.update(
-    {
-        "deezload": ">`.deez` <spotify/deezer link> <FORMAT>"
-        "\nUsage: Download music from deezer or spotify."
-        "\n\n *FORMAT= `FLAC`, `MP3_320`, `MP3_256`, `MP3_128`."
-    }
-)
+CMD_HELP.update({
+    "deezload":
+        ".deezload <spotify/deezer link> <Format>"
+        "\nUsage: Download music from deezer."
+        "\n\n*Format= FLAC, MP3_320, MP3_256, MP3_128."
+})
