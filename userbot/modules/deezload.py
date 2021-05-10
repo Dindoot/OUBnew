@@ -19,7 +19,7 @@ from telethon.tl.types import DocumentAttributeAudio
 
 
 @register(outgoing=True,
-          pattern=r"^\.deezload (.+?|) (FLAC|MP3\_320|MP3\_256|MP3\_128)")
+          pattern=r"^\.deez (.+?|) (FLAC|MP3\_320|MP3\_256|MP3\_128)")
 async def _(event):
     """DeezLoader by @An0nimia ported for UniBorg by @SpEcHlDe"""
     if event.fwd_from:
@@ -156,7 +156,7 @@ async def upload_track(track_location, message):
 
 CMD_HELP.update({
     "deezload":
-        ".deezload <spotify/deezer link> <Format>"
+        ".deez <spotify/deezer link> <Format>"
         "\nUsage: Download music from deezer."
         "\n\n*Format= FLAC, MP3_320, MP3_256, MP3_128."
 })
